@@ -1,0 +1,5 @@
+name: cool-monorepo-stack
+
+include:
+  - ./apps/docker-compose.yml
+  - ./packages/docker-compose.yml

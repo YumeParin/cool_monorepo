@@ -1,0 +1,25 @@
+{
+  "name": "cool-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "echo \"No build is possible\" && exit 0",
+    "start": "echo \"No start is possible\" && exit 0",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier:check": "npx prettier --check '**/src/**/*.{ts,tsx,js,jsx,json,css}'",
+    "prettier:write": "npx prettier --write '**/src/**/*.{ts,tsx,js,jsx,json,css}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.3.0",
+    "prettier": "^3.8.3",
+    "typescript-eslint": "^8.59.2"
+  }
+}
