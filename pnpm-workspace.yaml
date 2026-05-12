@@ -1,0 +1,10 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+allowBuilds:
+  '@prisma/engines': true
+  bufferutil: true
+  es5-ext: true
+  esbuild: true
+  prisma: true
+  utf-8-validate: true

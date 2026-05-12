@@ -1,5 +1,9 @@
 name: cool-monorepo-stack
 
+services:
+  proxy: 
+    image : nginx:latest
+
 include:
   - ./apps/docker-compose.yml
   - ./packages/docker-compose.yml

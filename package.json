@@ -10,12 +10,17 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier:check": "npx prettier --check '**/src/**/*.{ts,tsx,js,jsx,json,css}'",
-    "prettier:write": "npx prettier --write '**/src/**/*.{ts,tsx,js,jsx,json,css}'"
+    "prettier:write": "npx prettier --write '**/src/**/*.{ts,tsx,js,jsx,json,css}'",
+    "reset:cache": "pwsh -Command \"Remove-Item -Recurse -Force node_modules\"",
+    "update": "pnpm install",
+    "build:all": "pnpm -r build",
+    "docker:reset": "docker system prune -f",
+    "docker:build": "docker compose up -d --build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.3.0",

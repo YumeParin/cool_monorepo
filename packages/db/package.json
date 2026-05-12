@@ -1,0 +1,30 @@
+{
+  "name": "@swissokyo/db",
+  "version": "1.0.0",
+  "main": "dist/index.js", 
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "files": [
+    "dist",
+    "generated",
+    "prisma",
+    "prisma.config.ts"
+  ],
+  "scripts": {
+    "build": "tsc && tsc-alias"
+  },
+  "dependencies": {
+    "prisma": "^7.3.0",
+    "@prisma/adapter-pg": "^7.3.0",
+    "@types/pg": "^8.16.0",
+    "@prisma/client": "^7.3.0",
+    "pg": "^8.17.2",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

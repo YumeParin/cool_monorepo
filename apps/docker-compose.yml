@@ -1,3 +1,4 @@
-name: cool-monorepo-stack
+name: apps
 
-summon each apps docker I guess
+include:
+  - ./api/docker-compose.yml
