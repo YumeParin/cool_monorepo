@@ -15,7 +15,7 @@
     "update": "pnpm install",
     "build:all": "pnpm -r build",
     "docker:reset": "docker system prune -f",
-    "docker:build": "docker compose up -d --build"
+    "docker:build-prod": "docker compose up -d --build"
   },
   "keywords": [],
   "author": "",

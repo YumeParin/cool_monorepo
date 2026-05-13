@@ -6,6 +6,7 @@
   "main": "dist/src/app.js",
   "scripts": {
     "dev": "nodemon --exec tsx src/app.ts",
+    "dev:prisma:debug": "set DEBUG=prisma:* && npm run dev",
     "build": "tsc && tsc-alias",
     "start": "node dist/src/app.js"
   },

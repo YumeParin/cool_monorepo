@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.json({ limit: "10kb" }));
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Gensowall !" });
+  res.json({ message: "Welcome to Swissokyo !" });
 });
 
 app.use("/auth", authRoutes);
