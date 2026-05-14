@@ -1,0 +1,14 @@
+Member.Join()
+
+Join() {
+    if ( !isSafeAccount(member) ) {
+        Role.Add("Gapped", member)
+    }
+   
+}
+
+Member.Role.Youkai.Add()
+
+Youkai.Add() {
+    
+}
