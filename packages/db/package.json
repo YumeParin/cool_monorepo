@@ -1,7 +1,7 @@
 {
   "name": "@swissokyo/db",
   "version": "1.0.0",
-  "main": "dist/index.js", 
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "commonjs",
   "files": [
@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "build": "tsc && tsc-alias",
-    "prepare:dev": "npm run step_1 && npm run step_2 && npm run step_3",
+    "prepare:dev": "npm run step_0 && npm run step_1 && npm run step_2 && npm run step_3",
+    "step_0": "npx prisma generate",
     "step_1": "tsc && tsc-alias",
     "step_2": "docker compose up -d --build",
     "step_3": "npx prisma migrate deploy"
@@ -26,7 +27,6 @@
     "dotenv": "^17.2.3"
   },
   "devDependencies": {
-
     "tsc-alias": "^1.8.16",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

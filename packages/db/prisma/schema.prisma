@@ -16,7 +16,9 @@ datasource db {
 model Server {
   id  String @id
   members Member[]
-
+  welcomeChannelId String?
+  generalChannelId String?
+  gapChannelId String?
 }
 
 model Member {

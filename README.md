@@ -1,20 +1,27 @@
 # cool_monorepo
 
 # RUN cool_monorepo
+
 ```
 npm run update
 npm run docker:build
 ```
 
+# Requirements
+
+- NPM : https://nodejs.org/en/download
+- PNPM : npm install -g pnpm@latest-11
+- Docker + Docker Compose: https://docs.docker.com/engine/install/
+
 # RUN DEV
+
 ```
 npm run update
-cd /apps/api 
+cd ./packages/db
+npm run prepare:dev
+cd ..
+cd ..
+cd ./apps/api
+cp .env.example .env
 npm run dev
-cd ..
-cd ..
-cd /packages/db
-npm run step_1
-npm run step_2
-npm run step_3
 ```

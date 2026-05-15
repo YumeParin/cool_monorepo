@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS", // Or "ESNext" depending on your backend/frontend needs
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "composite": true, // Crucial for monorepos: allows packages to reference each other
+    "declaration": true, // Generates .d.ts files so other packages know your types
+    "declarationMap": true
+  }
+}
