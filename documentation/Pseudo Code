@@ -1,14 +1,21 @@
-Member.Join()
-
-Join() {
-    if ( !isSafeAccount(member) ) {
-        Role.Add("Gapped", member)
+// Event: When a member joins the server
+onMemberJoin(member) {
+    if (!member.isSafe()) {
+        member.addRole("Gapped");
+        return; // Stop here so we don't process further logic for unsafe accounts
     }
-   
 }
 
-Member.Role.Youkai.Add()
+// Event: When a member's roles are updated
+onRoleAdd(member, role) {
+    if (role.name === "Youkai") {
+        // Guard clauses: Keep the stress low by exiting early
+        if (member.hasBeenWelcomed || member.accountAge > 30_days) {
+            return;
+        }
 
-Youkai.Add() {
-    
+        Bots.Reimu.sendWelcome(member);
+        member.markAsWelcomed(); 
+    }
 }
+

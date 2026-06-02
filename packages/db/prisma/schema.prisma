@@ -16,15 +16,18 @@ datasource db {
 model Server {
   id  String @id
   members Member[]
+  discordId String
   welcomeChannelId String?
-  generalChannelId String?
-  gapChannelId String?
+  barrierChannelId String?
+  loggingChannelId String?
+  createdAt DateTime
 }
 
 model Member {
   id String @id
   servers Server[]
+  discordId String
   wasWelcomed Boolean @default(false)
   gappedSince DateTime?
-  
+  createdAt DateTime
 }
