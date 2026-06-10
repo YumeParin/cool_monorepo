@@ -62,7 +62,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       inviteLink = `https://discord.com/api/oauth2/authorize?client_id=${AYA_CLIENT_ID}&permissions=8&scope=bot%20applications.commands`;
     } else if (selectedBot === 'shiki') {
       botName = 'Shiki Eiki';
-      inviteLink = `https://discord.com/api/oauth2/authorize?client_id=${SHIKI_CLIENT_ID}&permissions=8&scope=bot%20applications.commands`;
+      inviteLink = `https://discord.com/oauth2/authorize?client_id=1442615496141701292&permissions=268561478&integration_type=0&scope=bot+applications.commands`;
     }
 
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
@@ -73,7 +73,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     );
 
     await interaction.reply({
-      content: `I cannot bypass Discord's security to add ${botName} myself, but you can securely invite her by clicking the button below!`,
+      content: `You can invite her by clicking the button below!`,
       components: [row],
       ephemeral: true,
     });
