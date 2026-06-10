@@ -1,15 +1,15 @@
-import { prisma } from "@swissokyo/db";
-import { yumeid } from "@/../lib/yumeid";
-import { HTTP_STATUS } from "@/constants/httpStatus";
-import { AppError } from "@/utils/AppError";
+import { prisma } from '@swissokyo/db';
+import { yumeid } from '@/../lib/yumeid';
+import { HTTP_STATUS } from '@/constants/httpStatus';
+import { AppError } from '@/utils/AppError';
 
 export const getPosts = async (page: number, limit: number) => {
-  console.log("Getposts");
+  console.log('Getposts');
   const posts = await prisma.post.findMany({
     take: limit,
     skip: (page - 1) * limit,
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
     include: {
       author: {
@@ -17,15 +17,11 @@ export const getPosts = async (page: number, limit: number) => {
       },
     },
   });
-  console.log("Posts : ", posts);
+  console.log('Posts : ', posts);
   return posts;
 };
 
-export const createNewPost = async (
-  title: string,
-  content: string,
-  authorId: string,
-) => {
+export const createNewPost = async (title: string, content: string, authorId: string) => {
   const newPost = await prisma.post.create({
     data: {
       id: yumeid(),
@@ -52,9 +48,8 @@ export const createNewPost = async (
 export const deletePost = async (id: string, authorId: string) => {
   const post = await prisma.post.findUnique({ where: { id } });
 
-  if (!post) throw new AppError("Post not found", HTTP_STATUS.NOT_FOUND);
-  if (post.authorId !== authorId)
-    throw new AppError("Unauthorized", HTTP_STATUS.FORBIDDEN);
+  if (!post) throw new AppError('Post not found', HTTP_STATUS.NOT_FOUND);
+  if (post.authorId !== authorId) throw new AppError('Unauthorized', HTTP_STATUS.FORBIDDEN);
 
   await prisma.post.delete({ where: { id } });
 
@@ -63,7 +58,7 @@ export const deletePost = async (id: string, authorId: string) => {
 export const adminDeletePost = async (id: string, authorId: string) => {
   const post = await prisma.post.findUnique({ where: { id } });
 
-  if (!post) throw new AppError("Post not found", HTTP_STATUS.NOT_FOUND);
+  if (!post) throw new AppError('Post not found', HTTP_STATUS.NOT_FOUND);
 
   await prisma.post.delete({ where: { id } });
 

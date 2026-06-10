@@ -1,52 +1,62 @@
-import { prisma } from "@swissokyo/db";
-import { yumeid } from "@/../lib/yumeid";
-import { HTTP_STATUS } from "@/constants/httpStatus";
-import { AppError } from "@/utils/AppError";
-import { uuid } from "zod";
-import { uuid4 } from "zod/v4/core/regexes.cjs";
+import { prisma } from '@swissokyo/db';
+import { yumeid } from '@/../lib/yumeid';
+import { HTTP_STATUS } from '@/constants/httpStatus';
+import { AppError } from '@/utils/AppError';
+import { uuid } from 'zod';
+import { uuid4 } from 'zod/v4/core/regexes.cjs';
 
-export const getPosts = async () => {
-  console.log("getServers");
+export const getServersList = async () => {
   const servers = await prisma.server.findMany({
     take: 20,
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
-    // include: {
-    //   members: {
-    //     select: { name: true, email: true, avatar: true },
-    //   },
-    // },
   });
-  console.log("Servers : ", servers);
   return servers;
 };
-//#TODO You have to finish creating the Server routes, refer to schema.prisma and ask Gemini how to use uuid for the id
-export const createNewServer = async (
-  discordId: string,
+export const getServerById = async (discordId: string) => {
+  const server = await prisma.server.findUnique({
+    where: { discordId: discordId },
+    select: {
+      id: true,
+      discordId: true,
+      welcomeChannelId: true,
+      barrierChannelId: true,
+      loggingChannelId: true,
+      createdAt: true,
+    },
+  });
 
-) => {
+  if (!server) {
+    throw new AppError('Server was not found', HTTP_STATUS.NOT_FOUND);
+  }
+  return server;
+};
+export const createNewServer = async (discordId: string) => {
   const newServer = await prisma.server.create({
     data: {
-      id: uuid,
-      discordId: discordId
-      content,
-      published: true,
-      author: {
-        connect: { id: authorId },
-      },
-    },
-    include: {
-      author: {
-        select: {
-          id: true,
-          name: true,
-          avatar: true,
-        },
-      },
+      discordId: discordId,
     },
   });
   return newServer;
+};
+
+export interface UpdateServerData {
+  welcomeChannelId?: string | null;
+  barrierChannelId?: string | null;
+  barrierLoggingChannelId?: string | null;
+  loggingChannelId?: string | null;
+}
+export const updateServer = async (discordId: string, dataToUpdate: UpdateServerData) => {
+  try {
+    const newServerData = await prisma.server.update({
+      where: { discordId: discordId },
+      data: dataToUpdate,
+    });
+    return newServerData;
+  } catch (error) {
+    throw new AppError('Server was not found', HTTP_STATUS.NOT_FOUND);
+  }
 };
 
 // export const deletePost = async (id: string, authorId: string) => {

@@ -1,5 +1,5 @@
-import { Prisma } from "generated/prisma/client";
-import { includes } from "zod";
+import { Prisma } from 'generated/prisma/client';
+import { includes } from 'zod';
 
 const postWithAuthor = Prisma.validator<Prisma.PostDefaultArgs>()({
   include: {

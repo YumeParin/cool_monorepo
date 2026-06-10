@@ -14,20 +14,21 @@ datasource db {
 }
 
 model Server {
-  id  String @id
-  members Member[]
-  discordId String
-  welcomeChannelId String?
-  barrierChannelId String?
-  loggingChannelId String?
-  createdAt DateTime
+  id                      String   @id @default(uuid())
+  members                 Member[]
+  discordId               String   @unique
+  welcomeChannelId        String?
+  barrierChannelId        String?
+  barrierLoggingChannelId String?
+  loggingChannelId        String?
+  createdAt               DateTime @default(now())
 }
 
 model Member {
-  id String @id
-  servers Server[]
-  discordId String
-  wasWelcomed Boolean @default(false)
+  id          String    @id
+  servers     Server[]
+  discordId   String
+  wasWelcomed Boolean   @default(false)
   gappedSince DateTime?
-  createdAt DateTime
+  createdAt   DateTime  @default(now())
 }

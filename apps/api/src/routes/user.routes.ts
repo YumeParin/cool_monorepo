@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express';
 import {
   beta_updateAvatarUrl,
   deleteUser,
@@ -6,35 +6,35 @@ import {
   getUsers,
   updateAvatar,
   updateMe,
-} from "@/controllers/user.controller";
-import { validate } from "@/middlewares/validate";
+} from '@/controllers/user.controller';
+import { validate } from '@/middlewares/validate';
 import {
   beta_uploadAvatarUrlSchema,
   deleteUserParamsSchema,
   updateMeSchema,
   uploadAvatarSchema,
-} from "@/validations/user.schema";
-import { authMiddleware } from "@/middlewares/auth";
-import { requireFile, uploadAvatarMiddleware } from "@/middlewares/fileUpload";
+} from '@/validations/user.schema';
+import { authMiddleware } from '@/middlewares/auth';
+import { requireFile, uploadAvatarMiddleware } from '@/middlewares/fileUpload';
 const router = Router();
 
-router.get("/list", getUsers);
-router.delete("/:id", validate(deleteUserParamsSchema), deleteUser);
-router.get("/me", authMiddleware, getMe);
-router.patch("/me", authMiddleware, validate(updateMeSchema), updateMe);
+router.get('/list', getUsers);
+router.delete('/:id', validate(deleteUserParamsSchema), deleteUser);
+router.get('/me', authMiddleware, getMe);
+router.patch('/me', authMiddleware, validate(updateMeSchema), updateMe);
 router.put(
-  "/me/avatar",
+  '/me/avatar',
   authMiddleware,
-  uploadAvatarMiddleware.single("avatar"),
+  uploadAvatarMiddleware.single('avatar'),
   requireFile,
   validate(uploadAvatarSchema),
-  updateAvatar,
+  updateAvatar
 );
 router.put(
-  "/me/avatarUrl",
+  '/me/avatarUrl',
   authMiddleware,
   validate(beta_uploadAvatarUrlSchema),
-  beta_updateAvatarUrl,
+  beta_updateAvatarUrl
 );
 
 export default router;

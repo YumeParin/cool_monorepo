@@ -1,29 +1,32 @@
 // NOTE: Validation middle mutates req.body/query/params
 // to ensure controllers receive strctly typed numbers/objects
-import { Request, Response } from "express";
-import * as postService from "@/services/post.service";
-import { catchAsync } from "@/utils/catchAsync";
-import {
-  GetPostsInput,
-  CreatePostInput,
-  DeletePostInput,
-} from "@/validations/post.schema";
+import { Request, Response } from 'express';
+import * as serverService from '@/services/server.service';
+import { catchAsync } from '@/utils/catchAsync';
 import {
   CreateServerInput,
+  GetServerByIdInput,
   EditServerInput,
   DeleteServerInput,
-} from "@/validations/server.schema";
-import { HTTP_STATUS } from "@/constants/httpStatus";
-import {
-  broadcastDeletePost,
-  broadcastNewPost,
-} from "@/services/websocket.service";
-import * as OutputSchema from "@/types/ws";
+} from '@/validations/server.schema';
+import { HTTP_STATUS } from '@/constants/httpStatus';
+import { broadcastDeletePost, broadcastNewPost } from '@/services/websocket.service';
+import * as OutputSchema from '@/types/ws';
+import { success } from 'zod';
 
-
-export const getServers = catchAsync(async (req: Request, res: Response) => {
-  // const servers = await serverService.getServers();
-  res.status(HTTP_STATUS.OK).json({ success: true, data: "servers" });
+export const getServersList = catchAsync(async (req: Request, res: Response) => {
+  const servers = await serverService.getServersList();
+  res.status(HTTP_STATUS.OK).json({
+    success: true,
+    data: servers,
+  });
+});
+export const getServerById = catchAsync(async (req: Request<GetServerByIdInput>, res: Response) => {
+  const server = await serverService.getServerById(req.params.discordId);
+  res.status(HTTP_STATUS.OK).json({
+    success: true,
+    data: server,
+  });
 });
 // export const getServers = catchAsync(
 //   async (req: Request<{}, {}, {}, GetServerInput>, res: Response) => {
@@ -39,19 +42,27 @@ export const getServers = catchAsync(async (req: Request, res: Response) => {
 
 export const createServer = catchAsync(
   async (req: Request<{}, {}, CreateServerInput>, res: Response) => {
-    // const newServer: OutputSchema.PopulatedPost = await serverService.createNewPost(
-    //   req.body.title,
-    //   req.
-    // );
+    const newServer = await serverService.createNewServer(req.body.discordId);
 
-    // broadcastNewPost(newPost);
-
-    return res
-      .status(HTTP_STATUS.CREATED)
-      .json({ success: true, data: "new server" });
-  },
+    return res.status(HTTP_STATUS.CREATED).json({
+      success: true,
+      data: newServer,
+    });
+  }
 );
 
+export const updateServer = catchAsync(
+  async (req: Request<{}, {}, EditServerInput>, res: Response) => {
+    const { discordId, ...updateFields } = req.body;
+
+    const updatedServer = await serverService.updateServer(discordId, updateFields);
+
+    res.status(200).json({
+      success: true,
+      data: updatedServer,
+    });
+  }
+);
 // export const deletePost = catchAsync(
 //   async (req: Request<DeletePostInput>, res: Response) => {
 //     await postService.deletePost(req.params.id, req.userId);

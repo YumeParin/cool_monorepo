@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import { ZodType, ZodError } from "zod";
-import { AppError } from "@/utils/AppError";
-import { HTTP_STATUS } from "@/constants/httpStatus";
+import { Request, Response, NextFunction } from 'express';
+import { ZodType, ZodError } from 'zod';
+import { AppError } from '@/utils/AppError';
+import { HTTP_STATUS } from '@/constants/httpStatus';
 type RequestSchema = ZodType<{
   body?: unknown;
   query?: unknown;
@@ -10,8 +10,7 @@ type RequestSchema = ZodType<{
   file?: unknown;
 }>;
 export const validate =
-  (schema: RequestSchema) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  (schema: RequestSchema) => async (req: Request, res: Response, next: NextFunction) => {
     try {
       const validatedData = await schema.parseAsync({
         body: req.body,
@@ -22,25 +21,25 @@ export const validate =
       });
       req.body = validatedData.body;
 
-      Object.defineProperty(req, "query", {
+      Object.defineProperty(req, 'query', {
         value: validatedData.query,
         writable: true,
         enumerable: true,
         configurable: true,
       });
-      Object.defineProperty(req, "params", {
+      Object.defineProperty(req, 'params', {
         value: validatedData.params,
         writable: true,
         enumerable: true,
         configurable: true,
       });
-      Object.defineProperty(req, "cookies", {
+      Object.defineProperty(req, 'cookies', {
         value: validatedData.cookies,
         writable: true,
         enumerable: true,
         configurable: true,
       });
-      Object.defineProperty(req, "file", {
+      Object.defineProperty(req, 'file', {
         value: validatedData.file,
         writable: true,
         enumerable: true,
@@ -57,10 +56,10 @@ export const validate =
       if (error instanceof ZodError) {
         return next(
           new AppError(
-            `Validation Error: ${error.issues.map((i) => i.message).join(", ")}`,
+            `Validation Error: ${error.issues.map((i) => i.message).join(', ')}`,
             HTTP_STATUS.BAD_REQUEST,
-            error.issues,
-          ),
+            error.issues
+          )
         );
       }
       return next(error);

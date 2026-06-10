@@ -5,11 +5,12 @@ import cookieParser from 'cookie-parser';
 import authRoutes from '@/routes/auth.routes';
 import postRoutes from '@/routes/post.routes';
 import userRoutes from '@/routes/user.routes';
-import serverRoutes from "@/routes/server.routes"
+import serverRoutes from '@/routes/server.routes';
 import { globalErrorHandler } from '@/middlewares/errorHandler';
 import { AppError } from '@/utils/AppError';
 import { corsConfig } from '@/config/corsConfig';
 import { initWebSocket } from './services/websocket.service';
+
 dotenv.config();
 import { env } from './config/env';
 
@@ -27,8 +28,7 @@ app.get('/', (req, res) => {
 // app.use("/auth", authRoutes);
 // app.use("/posts", postRoutes);
 // app.use("/users", userRoutes);
-app.use("/servers", serverRoutes);
-
+app.use('/servers', serverRoutes);
 
 // Expres v5, use app.use((req,res,next)) instead of app.all(*) is standard
 app.use((req, res, next) => {

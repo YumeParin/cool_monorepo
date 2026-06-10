@@ -19,7 +19,10 @@ export async function handleInteraction(interaction: Interaction) {
   } catch (err) {
     console.error('Command failed:', err);
 
-    const errorPayload = { content: 'An error occurred.', ephemeral: true };
+    const errorPayload = {
+      content: `An error occurred : ${err}`,
+      ephemeral: true,
+    };
     if (interaction.deferred || interaction.replied) {
       await interaction.followUp(errorPayload);
     } else {

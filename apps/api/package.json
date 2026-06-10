@@ -8,7 +8,9 @@
     "dev": "nodemon --exec tsx src/app.ts",
     "dev:prisma:debug": "set DEBUG=prisma:* && npm run dev",
     "build": "tsc && tsc-alias",
-    "start": "node dist/src/app.js"
+    "start": "node dist/src/app.js",
+    "prettier:check": "npx prettier --check '**/src/**/*.{ts,tsx,js,jsx,json,css}'",
+    "prettier:write": "npx prettier --write '**/src/**/*.{ts,tsx,js,jsx,json,css}'"
   },
   "keywords": [],
   "author": "",

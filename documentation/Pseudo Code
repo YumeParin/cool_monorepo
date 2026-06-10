@@ -1,3 +1,29 @@
+
+https://discord.com/oauth2/authorize?client_id=1419669452311756821&permissions=3072&integration_type=0&scope=bot+applications.commands
+Reimu -> add to server
+Reimu -> /register -> c'est le créateur du serveur qui register ? -> create Server in Database 
+Reimu va demander l'id du channel dans le quel mettre en place le serveur
+Reimu va ensuite demande dans le channel choisi ->
+    CONFIGURATION REIMU BOT
+    - Who are the others admins
+    - In which channel do you wish me to welcome new members ? (answer none for me to welcome nobody)
+
+Reimu -> /addBots -> Options (Eiki, Aya)
+- Eiki
+Reimu va ensuite demander dans le channel courant -> 
+    CONFIGURATION EIKO BOT
+    - In which channel do you wish to be the barriere channel ? (answer none for me to welcome nobody)
+    - In which channel do you wish to be the barriere log channel ? (answer none for me to welcome nobody)
+Eiki -> /config  
+    
+
+- Aya
+    CONFIGURATION AYA BOT
+    - In which channel do you wish to be the logging channel ? 
+
+
+        
+NOTE : Later I can make a web dashboard
 // Event: When a member joins the server
 onMemberJoin(member) {
     if (!member.isSafe()) {
