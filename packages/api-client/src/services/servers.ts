@@ -31,22 +31,16 @@ export const serverApi = {
       method: 'GET',
     });
   },
-  edit: (
-    discordId: string,
-    welcomeChannelId?: string | null,
-    barrierChannelId?: string | null,
-    barrierLoggingChannelId?: string | null,
-    loggingChannelId?: string | null
-  ) => {
+  edit: (params: {
+    discordId: string;
+    welcomeChannelId?: string | null;
+    barrierChannelId?: string | null;
+    barrierLoggingChannelId?: string | null;
+    loggingChannelId?: string | null;
+  }) => {
     return apiClient<ApiResponse>('/servers', {
       method: 'PATCH',
-      body: JSON.stringify({
-        discordId: discordId,
-        welcomeChannelId,
-        barrierChannelId,
-        barrierLoggingChannelId,
-        loggingChannelId,
-      }),
+      body: JSON.stringify(params),
     });
   },
 };

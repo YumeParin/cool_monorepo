@@ -18,7 +18,7 @@
     "discord.js": "^14.16.3",
     "zod": "^3.23.8",
     "dotenv": "^16.4.5",
-    "@packages/shared": "workspace:*"
+    "@swissokyo/api-client": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^8.0.1",
