@@ -9,8 +9,10 @@ import { data as add_feature } from './src/commands/add_feature.js';
 
 // Load your credentials
 const token = process.env.DISCORD_REIMU_TOKEN!;
-const clientId = process.env.CLIENT_ID! || '1419669452311756821';
-const guildId = process.env.GUILD_ID! || '1349376920512630784'; // Use your development server ID here!
+const clientId = process.env.CLIENT_ID!;
+// const clientId = process.env.CLIENT_ID! || '1419669452311756821';
+// const guildId = process.env.GUILD_ID! || '1349376920512630784'; // Use your development server ID here!
+const guildId = process.env.GUILD_ID!; // Use your development server ID here!
 
 // 2. Package them into an array of JSON objects
 const commands = [

@@ -22,6 +22,7 @@ export const getServerById = async (discordId: string) => {
       discordId: true,
       welcomeChannelId: true,
       barrierChannelId: true,
+      barrierLoggingChannelId: true,
       loggingChannelId: true,
       createdAt: true,
     },

@@ -19,9 +19,26 @@ npm run docker:build
 npm run update
 cd ./packages/db
 npm run prepare:dev
+cd..
+cd ./api-client
+npm run build
 cd ..
 cd ..
 cd ./apps/api
 cp .env.example .env
 npm run dev
 ```
+
+# TODO 17 june 2026
+
+- Logs when someone get gapped (bot-eiki)
+- Create the clearBarrier commands (bot-eiki)
+- Add moderatorLoggingChannel in the database etc. (bot-eiki)
+- Make the kick command + log in the moderatorLoggingChannel (bot-eiki)
+- Make the gap command + log in the moderatorLoggingChannel (bot-eiki)
+- Make the ungap command + log in the moderatorLoggingChannel (bot-eiki)
+- Make the ban command + log in the moderatorLoggingChannel (bot-eiki)
+
+...
+
+- Add miscelaneous info in command [contact, help etc.] /info (reimu)

@@ -54,7 +54,10 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     }
 
     // 4. Then, update it with the new configuration
-    await api.servers.edit(interaction.guild.id, welcomeChannel?.id || null);
+    await api.servers.edit({
+      discordId: interaction.guild.id,
+      welcomeChannelId: welcomeChannel?.id || null,
+    });
 
     // 5. Final confirmation
     await interaction.editReply(

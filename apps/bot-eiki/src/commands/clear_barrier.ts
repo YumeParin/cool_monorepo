@@ -9,18 +9,26 @@ export const data: SlashCommandOptionsOnlyBuilder = new SlashCommandBuilder()
   // Question 2: Welcome Channel
   .addChannelOption((option) =>
     option
-      .setName('welcome_channel')
+      .setName('barrier_channel')
       .setDescription(
-        'Where should I welcome new members? (Leave empty for none)'
+        'Where should I gap suspect members ? (Leave empty for none)'
       )
+
       .setRequired(false)
+  )
+  .addChannelOption((option) =>
+    option
+      .setName('barrier_log_channel')
+      .setDescription(
+        'Where should I log the gapped members ? (Leave empty for none)'
+      )
   );
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   try {
     if (!interaction.guild) {
       await interaction.reply({
-        content: 'This command can only be used in a server',
+        content: 'This command can only be used in a server, sorry!',
         ephemeral: true, // Only the user sees this
       });
       return;
@@ -30,7 +38,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     if (interaction.user.id !== ownerId) {
       await interaction.reply({
-        content: 'You are not the owner. Only them can use this command',
+        content: "Ya'are not the boss ! Only the owner can use this command",
         ephemeral: true,
       });
       return;
@@ -38,12 +46,15 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     // 1. Acknowledge immediately to give the API time
     await interaction.reply({
-      content: "Let's begin the settings configuration",
+      content: "Let's begin the configuration!",
     });
 
     // 2. Extract the answers Discord already validated for you
     // const otherAdmins = interaction.options.getMember('other_admins'); // Returns string or null
-    const welcomeChannel = interaction.options.getChannel('welcome_channel'); // Returns channel object or null
+    const barrierChannel = interaction.options.getChannel('barrier_channel'); // Returns channel object or null
+    const barrierLogChannel = interaction.options.getChannel(
+      'barrier_log_channel'
+    );
 
     // 3. First, create the server
     const isRegistered = await utils.server.isServerAlreadyRegistered(
@@ -56,13 +67,15 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     // 4. Then, update it with the new configuration
     await api.servers.edit({
       discordId: interaction.guild.id,
-      welcomeChannelId: welcomeChannel?.id || null,
+      barrierChannelId: barrierChannel?.id || null,
+      barrierLoggingChannelId: barrierLogChannel?.id || null,
     });
+    // await api.servers.edit(interaction.guild.id, barrierChannel?.id || null);
+    // await api.servers.edit(interaction.guild.id, barrierLogChannel?.id || null);
 
     // 5. Final confirmation
     await interaction.editReply(
-      `Server settings edited successfully!\n` +
-        `Welcome Channel: ${welcomeChannel ? `<#${welcomeChannel.id}>` : 'None'}\n`
+      `Message in barrier channel cleared successfully!`
     );
   } catch (error) {
     console.error(error);
@@ -70,7 +83,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const friendlyMessage =
       error instanceof Error
         ? error.message
-        : 'Something wen sideways with the API.';
+        : 'Something went sideways with the API.';
 
     // If the reply was already sent, edit it to show the error. Otherwise, reply.
     if (interaction.replied || interaction.deferred) {

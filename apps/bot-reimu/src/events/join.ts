@@ -1,7 +1,7 @@
 // src/bot-eiki/events/guildMemberAdd.ts
 import { GuildMember, TextChannel } from 'discord.js';
 import { sendMessage } from '../utils/messenger';
-import { ServerConfig } from '../config/config';
+// import { ServerConfig } from '../config/config';
 import { WELCOME_MESSAGES } from '../constants/messages';
 import { getRandomItem } from '../utils/random';
 import { api } from '@swissokyo/api-client';
