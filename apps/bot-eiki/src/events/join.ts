@@ -31,7 +31,7 @@ export async function handleJoin(member: GuildMember) {
 
     console.log(`Account age is ${accountAge}ms`);
 
-    if (accountAge < TIME.TEN_YEARS_MS) {
+    if (accountAge < TIME.TWO_MONTHS_MS) {
       let gappedRole = guild.roles.cache.find((role) => role.name === 'Gapped');
       console.log(
         `We gapping ${member.user.tag} because their account age is ${accountAge}ms`
@@ -61,12 +61,14 @@ export async function handleJoin(member: GuildMember) {
       //TODO: Give youkai role so reimu sees it and welcomes them properly
       // Setup the system if it doesn't exist
       let youkaiRole = guild.roles.cache.find((role) => role.name === 'Youkai');
+      console.log(`Youkai role: ${youkaiRole ? 'Found' : 'Not found'}`);
       if (!youkaiRole) {
         youkaiRole = await setupYoukaiRole(guild);
       }
-
+      console.log(`Youkai role ID: ${youkaiRole.id}`);
       // Execute the gap
       await member.roles.add(youkaiRole);
+      console.log(`Added Youkai role to ${member.user.tag}`);
     }
   } catch (error) {
     //ERROR HANDLING

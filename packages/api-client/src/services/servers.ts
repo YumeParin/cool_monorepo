@@ -10,6 +10,8 @@ export interface ServerResponse {
   welcomeChannelId: string | null;
   barrierChannelId: string | null;
   loggingChannelId: string | null;
+  moderatorRoleId: string | null;
+  barrierLoggingChannelId: string | null;
   createdAt: string;
 }
 
@@ -37,6 +39,7 @@ export const serverApi = {
     barrierChannelId?: string | null;
     barrierLoggingChannelId?: string | null;
     loggingChannelId?: string | null;
+    moderatorRoleId?: string | null;
   }) => {
     return apiClient<ApiResponse>('/servers', {
       method: 'PATCH',

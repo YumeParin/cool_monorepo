@@ -21,6 +21,7 @@ model Server {
   barrierChannelId        String?
   barrierLoggingChannelId String?
   loggingChannelId        String?
+  moderatorRoleId         String?
   createdAt               DateTime @default(now())
 }
 

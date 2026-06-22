@@ -23,4 +23,26 @@ export const serverUtils = {
       return false;
     }
   },
+  getServerModeratorRoleId: async (
+    discordId: string
+  ): Promise<string | null> => {
+    try {
+      const response = await api.servers.getById(discordId);
+      return response.data.moderatorRoleId;
+    } catch (error) {
+      console.error(`Error fetching server config for ${discordId}:`, error);
+      return null;
+    }
+  },
+  getServerBarrierLoggingChannelId: async (
+    discordId: string
+  ): Promise<string | null> => {
+    try {
+      const response = await api.servers.getById(discordId);
+      return response.data.barrierLoggingChannelId;
+    } catch (error) {
+      console.error(`Error fetching server config for ${discordId}:`, error);
+      return null;
+    }
+  },
 };

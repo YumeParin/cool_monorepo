@@ -24,6 +24,7 @@ export const getServerById = async (discordId: string) => {
       barrierChannelId: true,
       barrierLoggingChannelId: true,
       loggingChannelId: true,
+      moderatorRoleId: true,
       createdAt: true,
     },
   });
@@ -47,6 +48,7 @@ export interface UpdateServerData {
   barrierChannelId?: string | null;
   barrierLoggingChannelId?: string | null;
   loggingChannelId?: string | null;
+  moderatorRoleId?: string | null;
 }
 export const updateServer = async (discordId: string, dataToUpdate: UpdateServerData) => {
   try {

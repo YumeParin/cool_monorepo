@@ -6,6 +6,7 @@ import { data as pingData } from './src/commands/ping.js';
 import { data as simJoinData } from './src/commands/sim-join.js';
 import { data as configure } from './src/commands/configure.js';
 import { data as add_feature } from './src/commands/add_feature.js';
+import { data as gap } from './src/commands/gap.js';
 
 // Load your credentials
 const token = process.env.DISCORD_EIKI_TOKEN!;
@@ -18,6 +19,7 @@ const commands = [
   simJoinData.toJSON(),
   configure.toJSON(),
   add_feature.toJSON(),
+  gap.toJSON(),
 ];
 
 // 3. Prepare the REST module

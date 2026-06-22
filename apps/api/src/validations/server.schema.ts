@@ -28,6 +28,7 @@ export const editServerSchema = z.object({
     barrierChannelId: discordIdSchema.optional().nullable(),
     barrierLoggingChannelId: discordIdSchema.optional().nullable(),
     loggingChannelId: discordIdSchema.optional().nullable(),
+    moderatorRoleId: discordIdSchema.optional().nullable(),
   }),
 });
 

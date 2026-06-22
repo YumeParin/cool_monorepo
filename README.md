@@ -46,5 +46,6 @@ npm run dev
 
 # Mission of 22 June 2026
 
-- Logs when someone get gapped (bot-eiki)
-- Make the gap command + log in the moderatorLoggingChannel (bot-eiki)
+- Logs when someone get gapped (bot-eiki) DONE
+- Make the gap command + log in the moderatorLoggingChannel (bot-eiki) DONE
+- Make the ungap commande + log in the moderatorLoggingChannel (bot-eiki)
