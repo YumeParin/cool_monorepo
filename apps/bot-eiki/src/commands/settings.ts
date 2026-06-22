@@ -3,6 +3,12 @@ import { api, utils } from '@swissokyo/api-client';
 import { SlashCommandOptionsOnlyBuilder } from 'discord.js';
 import { util } from 'zod/v4/core';
 
+// TODO : This settings command should be for changing settings like :
+// "gapped parameters : 1month old, 2months old etc."
+// "kick gapped after 1week, 2weeks etc."
+// "alert user when they got gapped message"
+// "alert user when they are about to be kicked for being gapped message"
+
 export const data: SlashCommandOptionsOnlyBuilder = new SlashCommandBuilder()
   .setName('configure')
   .setDescription('Begin configuration of the bot')

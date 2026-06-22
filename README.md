@@ -38,7 +38,13 @@ npm run dev
 - Make the gap command + log in the moderatorLoggingChannel (bot-eiki)
 - Make the ungap command + log in the moderatorLoggingChannel (bot-eiki)
 - Make the ban command + log in the moderatorLoggingChannel (bot-eiki)
+- Add settings commands (bot-eiki)
 
 ...
 
-- Add miscelaneous info in command [contact, help etc.] /info (reimu)
+- Add miscelaneous info in command [contact, help etc.] /info (bot-reimu)
+
+# Mission of 22 June 2026
+
+- Logs when someone get gapped (bot-eiki)
+- Make the gap command + log in the moderatorLoggingChannel (bot-eiki)
